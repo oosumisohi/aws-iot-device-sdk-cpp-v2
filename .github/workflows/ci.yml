@@ -21,101 +21,101 @@ env:
   AWS_DEFAULT_REGION: us-east-1
 
 jobs:
-  linux-compat:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        image:
-          - manylinux2014-x64
-          - manylinux2014-x86
-          - al2-x64
+  # linux-compat:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       image:
+  #         - manylinux2014-x64
+  #         - manylinux2014-x86
+  #         - al2-x64
 
-    steps:
-      # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
-      - name: Build ${{ env.PACKAGE_NAME }}
-        run: |
-          aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
-          ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ matrix.image }} build -p ${{ env.PACKAGE_NAME }} --variant=device_advisor
+  #   steps:
+  #     # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
+  #     - name: Build ${{ env.PACKAGE_NAME }}
+  #       run: |
+  #         aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
+  #         ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ matrix.image }} build -p ${{ env.PACKAGE_NAME }} --variant=device_advisor
 
-  linux-compiler-compat:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        version:
-          - clang-3
-          - clang-6
-          - clang-8
-          - clang-9
-          - clang-10
-          - clang-11
-          - gcc-4.8
-          - gcc-5
-          - gcc-6
-          - gcc-7
-          - gcc-8
-    steps:
-      # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
-      - name: Build ${{ env.PACKAGE_NAME }}
-        run: |
-          aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
-          ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --compiler=${{ matrix.compiler }} --variant=device_advisor
+  # linux-compiler-compat:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       version:
+  #         - clang-3
+  #         - clang-6
+  #         - clang-8
+  #         - clang-9
+  #         - clang-10
+  #         - clang-11
+  #         - gcc-4.8
+  #         - gcc-5
+  #         - gcc-6
+  #         - gcc-7
+  #         - gcc-8
+  #   steps:
+  #     # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
+  #     - name: Build ${{ env.PACKAGE_NAME }}
+  #       run: |
+  #         aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
+  #         ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --compiler=${{ matrix.compiler }} --variant=device_advisor
 
-  byo-crypto:
-    runs-on: ubuntu-latest
-    steps:
-        # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
-    - name: Build ${{ env.PACKAGE_NAME }}
-      run: |
-        aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
-        ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DBYO_CRYPTO=ON skip_samples=1 skip_da=1
+  # byo-crypto:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #       # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
+  #   - name: Build ${{ env.PACKAGE_NAME }}
+  #     run: |
+  #       aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
+  #       ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DBYO_CRYPTO=ON skip_samples=1 skip_da=1
 
-  linux-no-cpu-extensions:
-    runs-on: ubuntu-latest
-    steps:
-        # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
-    - name: Build ${{ env.PACKAGE_NAME }}
-      run: |
-        aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
-        ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF --variant=device_advisor
+  # linux-no-cpu-extensions:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #       # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
+  #   - name: Build ${{ env.PACKAGE_NAME }}
+  #     run: |
+  #       aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
+  #       ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF --variant=device_advisor
 
-  windows-vs16:
-    runs-on: windows-latest
-    steps:
-      - name: Build ${{ env.PACKAGE_NAME }} + consumers
-        run: |
-          md D:\a\work
-          cd D:\a\work
-          python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
-          python builder.pyz build -p ${{ env.PACKAGE_NAME }} --spec=downstream --variant=device_advisor
+  # windows-vs16:
+  #   runs-on: windows-latest
+  #   steps:
+  #     - name: Build ${{ env.PACKAGE_NAME }} + consumers
+  #       run: |
+  #         md D:\a\work
+  #         cd D:\a\work
+  #         python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
+  #         python builder.pyz build -p ${{ env.PACKAGE_NAME }} --spec=downstream --variant=device_advisor
 
-  windows-vs14:
-    runs-on: windows-latest
-    strategy:
-      matrix:
-        arch: [x86, x64]
-    steps:
-      - uses: ilammy/msvc-dev-cmd@v1
-        with:
-          toolset: 14.0
-          arch: ${{ matrix.arch }}
-          uwp: false
-          spectre: true
-      - name: Build ${{ env.PACKAGE_NAME }} + consumers
-        run: |
-          md D:\a\work
-          cd D:\a\work
-          python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz?run=${{ env.RUN }}', 'builder.pyz')"
-          python builder.pyz build -p ${{ env.PACKAGE_NAME }} --spec=downstream --variant=device_advisor
+  # windows-vs14:
+  #   runs-on: windows-latest
+  #   strategy:
+  #     matrix:
+  #       arch: [x86, x64]
+  #   steps:
+  #     - uses: ilammy/msvc-dev-cmd@v1
+  #       with:
+  #         toolset: 14.0
+  #         arch: ${{ matrix.arch }}
+  #         uwp: false
+  #         spectre: true
+  #     - name: Build ${{ env.PACKAGE_NAME }} + consumers
+  #       run: |
+  #         md D:\a\work
+  #         cd D:\a\work
+  #         python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz?run=${{ env.RUN }}', 'builder.pyz')"
+  #         python builder.pyz build -p ${{ env.PACKAGE_NAME }} --spec=downstream --variant=device_advisor
 
-  windows-no-cpu-extensions:
-    runs-on: windows-latest
-    steps:
-      - name: Build ${{ env.PACKAGE_NAME }} + consumers
-        run: |
-          md D:\a\work
-          cd D:\a\work
-          python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
-          python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF --variant=device_advisor
+  # windows-no-cpu-extensions:
+  #   runs-on: windows-latest
+  #   steps:
+  #     - name: Build ${{ env.PACKAGE_NAME }} + consumers
+  #       run: |
+  #         md D:\a\work
+  #         cd D:\a\work
+  #         python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
+  #         python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF --variant=device_advisor
 
   osx:
     runs-on: macos-latest
