@@ -91,9 +91,9 @@ int main()
 
         auto onPublishComplete = [&](Mqtt::MqttConnection &, uint16_t, int) { publishFinishedPromise.set_value(); };
         connection->Publish(daVars.topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, false, payload, onPublishComplete);
-        printf("waiting on publish..... ");
+        fprintf(stderr, "waiting on publish..... ");
         publishFinishedPromise.get_future().wait();
-        printf("get on publish..... ");
+        fprintf(stderr, "get on publish..... ");
 
         /* Disconnect */
         if (connection->Disconnect())
