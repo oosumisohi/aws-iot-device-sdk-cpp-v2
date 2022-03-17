@@ -34,8 +34,8 @@ DATestConfig = json.load(f)
 f.close()
 
 # create an temporary certificate/key file path
-certificate_path = 'certificate.pem.crt'
-key_path = 'private.pem.key'
+certificate_path = os.path.join(os.getcwd(), 'certificate.pem.crt')
+key_path = os.path.join(os.getcwd(), 'private.pem.key')
 
 # load environment variables requried for testing
 shadowProperty = os.environ['DA_SHADOW_PROPERTY']
