@@ -201,7 +201,6 @@ for test_name in DATestConfig['tests']:
                 test_result[test_name] = test_result_responds['status']
                 break
     except Exception as e:
-        delete_thing_with_certi(thing_name, certificate_id ,certificate_arn )
         print("[Device Advisor]Error: Failed to test: "+ test_name)
         exit(-1)
 
