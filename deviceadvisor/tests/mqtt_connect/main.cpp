@@ -37,7 +37,8 @@ int main()
     /*
      * Setup client configuration with the MqttClientConnectionConfigBuilder.
      */
-
+    fprintf(stderr, "log certificate path: %s", daVars.certificatePath.c_str());
+    fprintf(stderr, "log key path: %s", daVars.keyPath.c_str());
     Aws::Iot::MqttClientConnectionConfigBuilder builder =
         Aws::Iot::MqttClientConnectionConfigBuilder(daVars.certificatePath.c_str(), daVars.keyPath.c_str());
     builder.WithEndpoint(daVars.endpoint);
