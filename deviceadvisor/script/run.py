@@ -203,9 +203,9 @@ for test_name in DATestConfig['tests']:
             elif (test_result_responds['status'] != 'RUNNING'):
                 test_result[test_name] = test_result_responds['status']
                 break
+        delete_thing_with_certi(thing_name, certificate_id ,certificate_arn )
     except Exception as e:
         print("[Device Advisor]Error: Failed to test: "+ test_name)
-        exit(-1)
 
 ##############################################
 # print result and cleanup things
@@ -219,6 +219,5 @@ for test in test_result:
 if failed:
     # if the test failed, we dont clean the Thing so that we can track the error
     exit(-1)
-
-delete_thing_with_certi(thing_name, certificate_id ,certificate_arn )
+    
 exit(0)
