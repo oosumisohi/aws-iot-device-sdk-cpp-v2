@@ -194,7 +194,7 @@ for test_name in DATestConfig['tests']:
                 else:
                     exe_path = os.path.join(exe_path, DATestConfig['test_exe_path'][test_name])
                 print("start to run" + exe_path)
-                result = subprocess.run(exe_path, timeout = 60*3)
+                result = subprocess.run(exe_path, timeout = 60*2)
 
             # If the test finalizing or store the test result
             elif (test_result_responds['status'] != 'RUNNING'):
