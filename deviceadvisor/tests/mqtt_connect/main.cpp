@@ -91,10 +91,10 @@ int main()
     }
 
     /* Disconnect */
-    if (connection->Disconnect())
-    {
-        connectionClosedPromise.get_future().wait();
-    }
+    // if (connection->Disconnect())
+    // {
+    //     connectionClosedPromise.get_future().wait();
+    // }
 
     return 0;
 }
