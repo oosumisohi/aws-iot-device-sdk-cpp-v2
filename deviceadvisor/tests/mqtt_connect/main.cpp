@@ -23,7 +23,7 @@ int main()
      */
     ApiHandle apiHandle;
     apiHandle.InitializeLogging(Aws::Crt::LogLevel::Debug, stderr);
-    String clientId(String("test-") + Aws::Crt::UUID().ToString());
+    String clientId(String("test-") /* + Aws::Crt::UUID().ToString()*/);
 
     /*********************** Parse Arguments ***************************/
 

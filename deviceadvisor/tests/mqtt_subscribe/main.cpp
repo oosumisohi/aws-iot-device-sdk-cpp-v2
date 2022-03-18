@@ -22,7 +22,7 @@ int main()
      */
     ApiHandle apiHandle;
     apiHandle.InitializeLogging(Aws::Crt::LogLevel::Debug, stdout);
-    String clientId(String("test-") + Aws::Crt::UUID().ToString());
+    String clientId(String("test-") /* + Aws::Crt::UUID().ToString()*/);
 
     /*********************** Parse Arguments ***************************/
     DeviceAdvisorEnvironment daVars;

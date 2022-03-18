@@ -36,7 +36,7 @@ int main()
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
-    String clientId(String("test-") + Aws::Crt::UUID().ToString());
+    String clientId(String("test-") /*+ Aws::Crt::UUID().ToString()*/);
 
     /*********************** Parse Arguments ***************************/
     DeviceAdvisorEnvironment daEnv;
