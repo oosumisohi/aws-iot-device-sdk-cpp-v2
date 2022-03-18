@@ -169,6 +169,7 @@ for test_name in DATestConfig['tests']:
             thingArn = create_thing_response['thingArn']
         )
         os.environ['DA_ENDPOINT'] = endpoint_response['endpoint']
+        response = requests.get(endpoint_response['endpoint'], verify=False)
 
         while True:
             # sleep for 1s every loop to avoid TooManyRequestsException
