@@ -54,7 +54,7 @@ Note: `-DCMAKE_INSTALL_PREFIX` can be any path where the project needs to be ins
 ``` sh
 mkdir sdk-cpp-workspace
 cd sdk-cpp-workspace
-git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git
+git clone --recursive https://github.com/oosumisohi/aws-iot-device-sdk-cpp-v2.git
 mkdir aws-iot-device-sdk-cpp-v2-build
 cd aws-iot-device-sdk-cpp-v2-build
 cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>" -DCMAKE_BUILD_TYPE="<Release|RelWithDebInfo|Debug>" ../aws-iot-device-sdk-cpp-v2
@@ -66,7 +66,7 @@ cmake --build . --target install
 ``` sh
 mkdir sdk-cpp-workspace
 cd sdk-cpp-workspace
-git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git
+git clone --recursive https://github.com/oosumisohi/aws-iot-device-sdk-cpp-v2.git
 mkdir aws-iot-device-sdk-cpp-v2-build
 cd aws-iot-device-sdk-cpp-v2-build
 cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>" ../aws-iot-device-sdk-cpp-v2
