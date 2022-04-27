@@ -1,3 +1,13 @@
+ # AWS IoT Device SDK for C++ v2のBUILD_SHARED_LIBS=ON対応
+　　
+* Fix : Windowsの-DBUILD_SHARED_LIBS=ON
+* Change : BUILD_SHARED_LIBSの初期値ををONに変更
+
+使用するには、C++プリプロセッサ設定に下記の定義が必要です。
+
+    USE_WINDOWS_DLL_SEMANTICS
+    AWS_CRT_CPP_USE_IMPORT_EXPORT
+
 # AWS IoT Device SDK for C++ v2
 
 This document provides information about the AWS IoT device SDK for C++ V2.
