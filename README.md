@@ -1,9 +1,10 @@
- # AWS IoT Device SDK for C++ v2のBUILD_SHARED_LIBS=ON対応
-　　
+https://github.com/aws/aws-iot-device-sdk-cpp-v2 のfork
+ 
+# AWS IoT Device SDK for C++ v2のDLLビルド
 * Fix : Windowsの-DBUILD_SHARED_LIBS=ON
 * Change : BUILD_SHARED_LIBSの初期値ををONに変更
 
-使用するには、C++プリプロセッサ設定に下記の定義が必要です。
+DLLを使用するには、C++プリプロセッサ設定に下記の定義が必要です。
 
     USE_WINDOWS_DLL_SEMANTICS
     AWS_CRT_CPP_USE_IMPORT_EXPORT
@@ -54,7 +55,7 @@ Note: `-DCMAKE_INSTALL_PREFIX` can be any path where the project needs to be ins
 ``` sh
 mkdir sdk-cpp-workspace
 cd sdk-cpp-workspace
-git clone --recursive https://github.com/oosumisohi/aws-iot-device-sdk-cpp-v2.git
+git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2
 mkdir aws-iot-device-sdk-cpp-v2-build
 cd aws-iot-device-sdk-cpp-v2-build
 cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>" -DCMAKE_BUILD_TYPE="<Release|RelWithDebInfo|Debug>" ../aws-iot-device-sdk-cpp-v2
@@ -66,7 +67,7 @@ cmake --build . --target install
 ``` sh
 mkdir sdk-cpp-workspace
 cd sdk-cpp-workspace
-git clone --recursive https://github.com/oosumisohi/aws-iot-device-sdk-cpp-v2.git
+git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2
 mkdir aws-iot-device-sdk-cpp-v2-build
 cd aws-iot-device-sdk-cpp-v2-build
 cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>" ../aws-iot-device-sdk-cpp-v2
