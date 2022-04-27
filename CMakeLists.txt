@@ -5,6 +5,7 @@ include(CTest)
 
 option(BUILD_DEPS "Builds aws common runtime dependencies as part of build. Turn off if you want to control your dependency chain." ON)
 option(BUILD_SAMPLES "Build samples as part of the build" OFF)
+option(BUILD_SHARED_LIBS "build a shared library" ON)
 
 if (DEFINED CMAKE_PREFIX_PATH)
     file(TO_CMAKE_PATH "${CMAKE_PREFIX_PATH}" CMAKE_PREFIX_PATH)
