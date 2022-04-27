@@ -57,7 +57,7 @@ if (CMAKE_BUILD_TYPE STREQUAL "" OR CMAKE_BUILD_TYPE MATCHES Debug)
 endif ()
 
 if (BUILD_SHARED_LIBS)
-    target_compile_definitions(IotJobs-cpp PUBLIC "-DAWS_IOTJOBS_USE_IMPORT_EXPORT")
+    target_compile_definitions(IotJobs-cpp INTERFACE "-DAWS_IOTJOBS_USE_IMPORT_EXPORT")
     target_compile_definitions(IotJobs-cpp PRIVATE "-DAWS_IOTJOBS_EXPORTS")
 
     install(TARGETS IotJobs-cpp
