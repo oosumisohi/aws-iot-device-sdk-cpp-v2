@@ -58,7 +58,7 @@ namespace Aws
 
         namespace JobStatusMarshaller
         {
-            const char *AWS_IOTJOBS_API ToString(JobStatus val);
+            const AWS_IOTJOBS_API char *ToString(JobStatus val);
             JobStatus AWS_IOTJOBS_API FromString(const Aws::Crt::String &val);
         } // namespace JobStatusMarshaller
     }     // namespace Iotjobs
