@@ -73,7 +73,7 @@ namespace Aws
 
         namespace RejectedErrorCodeMarshaller
         {
-            const char *AWS_IOTJOBS_API ToString(RejectedErrorCode val);
+            const AWS_IOTJOBS_API char *ToString(RejectedErrorCode val);
             RejectedErrorCode AWS_IOTJOBS_API FromString(const Aws::Crt::String &val);
         } // namespace RejectedErrorCodeMarshaller
     }     // namespace Iotjobs
